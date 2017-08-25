@@ -10,7 +10,7 @@ class App extends Component {
       {
         title: 'React',
         url: 'https://facebook.github.io/react/',
-        author: 'Jordan Walke',
+        author: 'Patrick James G. Lim',
         num_comments: 3,
         points: 4,
         objectID: 0

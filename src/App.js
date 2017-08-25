@@ -27,23 +27,34 @@ class App extends Component {
 
     this.state = {
       header: 'Hackernews API Project',
-      LIST
+      LIST,
+      searchTerm: ''
     }
 
     this.onDismiss = this.onDismiss.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
   }
 
   onDismiss(id) {
-    const isNotId = (item) => item !== id;
-    const updatedList = this.state.LIST.filter(isNotId);
+    //const isNotId = item => item.objectID !== id;
+    const updatedList = this.state.LIST.filter(item => item.objectID !== id);
 
-    this.setState({ list: updatedList });
+    this.setState({
+      LIST: updatedList
+    });
+  }
+
+  onSearchChange(event) {
+    this.SetState({ searchTerm: event.target.value });
   }
 
   render() {
     return (
       <div className="App">
         <h1>{this.state.header}</h1>
+        <form>
+          <input type="text" onChange={this.onSearchChange}/>
+        </form>
         {this.state.LIST.map(item =>
             <div key={item.objectID}>
               <span>
@@ -55,7 +66,8 @@ class App extends Component {
 
               <span>
                 <button onClick={() => this.onDismiss(item.objectID)}
-                  type="button">
+                  type="button"
+                >
                   Dismiss
                 </button>
               </span>
